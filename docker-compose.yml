@@ -1,6 +1,12 @@
 version: '3.6'
+x-logging: &logging
+  logging:
+    options:
+      max-size: '10m'
+      max-file: '3'
 services:
   mongo:
+    <<: *logging
     image: mongo
     volumes:
       - mongo:/data/db
@@ -15,6 +21,7 @@ services:
         limits:
           memory: 1g
   mongo-express:
+    <<: *logging
     image: mongo-express
     restart: always
     ports:
