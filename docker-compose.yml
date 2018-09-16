@@ -8,6 +8,7 @@ services:
   mongo:
     <<: *logging
     image: mongo
+    command: --wiredTigerEngineConfigString="cache_size=256M"
     volumes:
       - mongo:/data/db
     environment:
